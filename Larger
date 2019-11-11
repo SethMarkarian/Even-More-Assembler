@@ -1,0 +1,18 @@
+		add		r0, r0, #6 ;tests with 6
+		add		r1, r1, #5 ;tests with 5
+		cmp		r0, r1 ;compare both registers
+		bgt		xgreater ;if greater go to xgreater
+		blt		ygreater ;if less than, go to ygreater
+		add		r12, r12, #0 ;if equal return false
+		bl		done
+		
+xgreater	add		r12, r12, #1 ;return true
+		bl		done
+		
+ygreater	add		r12, r12, #0 ;return false
+		bl		done
+		
+done		mov		r14,r12
+		
+		;caller	saves: you save registers you need then call function
+		;callee	saves: function is called, save registers on stack in the function, mess around, reset regesters in function and pop it off the stack in the function, then return

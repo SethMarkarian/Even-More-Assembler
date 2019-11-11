@@ -1,0 +1,31 @@
+createStack	add		r1, r1, #5
+			add		r7, r7, #64
+			add		r7, r7, r2
+			sub		sp, sp, r7
+			mov		r3, #3
+			str		r3, [sp, #0]
+			mov		r3, #7
+			str		r3, [sp, #16]
+			mov		r3, #5
+			str		r3, [sp, #32]
+			mov		r3, #6
+			str		r3, [sp, #48]
+			mov		r3, #9
+			str		r3, [sp, #64]
+			mov		r7, sp
+			bl		sum
+			end
+			
+sum			mov		r3, #0 ;loading base address to a register
+			b		loop
+			
+loop			ldr		r4, [sp, r3] ;loops over array
+			cmp		r1, #0 ;checks to see if end is reached
+			beq		done
+			add		r6, r6, r4 ;adds current integer
+			add		r3, r3, #16
+			sub		r1, r1, #1 ;subtracts from size
+			b		loop
+			
+done			mov		r12, r6
+			mov		pc, r14
